@@ -31,11 +31,11 @@ onMounted(() => {
 
     <CoreApplicationRender />
     <SystemBar
-      v-if="systemBar.enabled.value"
+      v-if="systemBar?.enabled.value"
     />
 
     <DesktopShutdown
-      :active="systemLifecycle.isShuttingDown.value"
+      :active="systemLifecycle?.isShuttingDown.value"
     />
   </CoreDesktop>
 </template>
