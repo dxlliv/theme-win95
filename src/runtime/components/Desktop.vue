@@ -10,14 +10,14 @@ useBlockNonInputContextMenu()
 </script>
 
 <template>
-  <CoreDesktop v-bind="$props">
+  <DesktopCore v-bind="$props">
     <Background />
 
     <DesktopContent>
       <slot />
     </DesktopContent>
 
-    <CoreApplicationRender />
+    <DesktopApplicationRender />
     <SystemBar
       v-if="systemBar?.enabled.value"
     />
@@ -25,7 +25,7 @@ useBlockNonInputContextMenu()
     <DesktopShutdown
       :active="shuttingDown"
     />
-  </CoreDesktop>
+  </DesktopCore>
 </template>
 
 <style lang="scss">

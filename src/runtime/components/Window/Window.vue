@@ -6,7 +6,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <CoreWindow
+  <DesktopWindow
     v-bind="$props"
     v-show="window?.state?.active ?? true"
   >
@@ -28,7 +28,7 @@ const props = defineProps<{
         </WindowContent>
       </template>
     </Card>
-  </CoreWindow>
+  </DesktopWindow>
 </template>
 
 <style scoped lang="scss">
