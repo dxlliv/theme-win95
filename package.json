@@ -58,7 +58,7 @@
     "@owdproject/kit-explorer": "workspace:*",
     "@owdproject/kit-fs": "workspace:*",
     "@owdproject/kit-theme": "workspace:*",
-    "deepmerge": "^4.3.1"
+    "defu": "^6.1.4"
   },
   "devDependencies": {
     "@nuxt/devtools": "^3.2.4",

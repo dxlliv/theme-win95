@@ -6,8 +6,8 @@ import {
   addImportsDir,
   addPlugin,
 } from '@nuxt/kit'
+import { defu } from 'defu'
 import { registerTailwindPath } from '@owdproject/core'
-import deepMerge from 'deepmerge'
 
 export default defineNuxtModule({
   meta: {
@@ -27,9 +27,9 @@ export default defineNuxtModule({
 
     await installModule('@owdproject/kit-theme')
 
-    // assign open web desktop theme base config to runtime config
-    nuxt.options.runtimeConfig.public.desktop = deepMerge(
-      nuxt.options.runtimeConfig.public.desktop,
+    nuxt.options.runtimeConfig.public ??= {}
+    nuxt.options.runtimeConfig.public.desktop = defu(
+      nuxt.options.runtimeConfig.public.desktop ?? {},
       options,
     )
 
