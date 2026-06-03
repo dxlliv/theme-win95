@@ -9,7 +9,8 @@
   --p-menubar-item-padding: 6px 8px;
   --p-menubar-base-item-padding: 6px 12px;
 
-  --owd-start-menu-row-height: 31px;
+  --owd-start-menu-root-row-height: 36px;
+  --owd-start-menu-submenu-row-height: 31px;
 }
 
 .p-menu {
@@ -104,8 +105,37 @@ body .owd-system-bar__start__menu.p-tieredmenu {
     animation: none !important;
   }
 
-  .p-tieredmenu-root-list,
+  .p-tieredmenu-root-list {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    gap: 0;
+    border-left: 32px solid rgb(var(--owd-elevation-inactive));
+  }
+
+  .p-tieredmenu-item {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  /* Main Start list (Programs, Documents, …) — taller rows. */
+  .p-tieredmenu-root-list > .p-tieredmenu-item {
+    min-height: var(--owd-start-menu-root-row-height);
+
+    > .p-tieredmenu-item-content {
+      min-height: var(--owd-start-menu-root-row-height);
+    }
+  }
+
+  /* Programs etc. — flyout to the right (not stacked under the parent row). */
   .p-tieredmenu-submenu {
+    position: absolute !important;
+    left: 100% !important;
+    top: 0 !important;
+    right: auto !important;
+    bottom: auto !important;
     display: flex;
     flex-direction: column;
     margin: 0;
@@ -114,28 +144,31 @@ body .owd-system-bar__start__menu.p-tieredmenu {
     gap: 0;
   }
 
-  .p-tieredmenu-root-list {
-    border-left: 32px solid rgb(var(--owd-elevation-inactive));
-  }
-
-  .p-tieredmenu-item {
-    min-height: 0;
-    flex-shrink: 0;
-  }
-
   .p-tieredmenu-item-content {
     border-radius: 0;
     padding: 0;
-    min-height: 0;
   }
 
-  .owd-system-bar__start__menu__link,
-  .p-tieredmenu-item-link {
+  .p-tieredmenu-root-list .owd-system-bar__start__menu__link,
+  .p-tieredmenu-root-list .p-tieredmenu-item-link {
     display: flex;
     align-items: center;
     box-sizing: border-box;
-    height: var(--owd-start-menu-row-height);
-    min-height: var(--owd-start-menu-row-height);
+    height: var(--owd-start-menu-root-row-height);
+    min-height: var(--owd-start-menu-root-row-height);
+    padding: 7px 10px;
+    gap: 8px;
+    overflow: visible;
+    line-height: 1.3;
+  }
+
+  .p-tieredmenu-submenu .owd-system-bar__start__menu__link,
+  .p-tieredmenu-submenu .p-tieredmenu-item-link {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    height: var(--owd-start-menu-submenu-row-height);
+    min-height: var(--owd-start-menu-submenu-row-height);
     padding: 4px 10px;
     gap: 8px;
     overflow: visible;

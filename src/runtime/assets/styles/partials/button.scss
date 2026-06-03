@@ -113,20 +113,32 @@
     min-height: 22px;
 
     &-start {
+      position: relative;
       min-width: 64px;
       padding-left: 44px !important;
       font-weight: bold;
+      color: var(--p-card-color);
     }
 
     &:active,
     &.p-button--active {
-      > span {
+      color: var(--p-card-color);
+
+      > span,
+      & {
         position: relative;
-        pointer-events: none;
         z-index: 2;
       }
 
+      > span {
+        pointer-events: none;
+      }
+
       &:before {
+        z-index: 0;
+      }
+
+      &.p-button--system-bar-start:before {
         background: repeating-conic-gradient(
             rgb(var(--owd-theme-color-grey)) 0% 25%,
             rgb(var(--owd-theme-color-white)) 25% 50%

@@ -1,10 +1,16 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { nextTick, onUnmounted, ref } from 'vue'
 import TieredMenu from 'primevue/tieredmenu'
 import { useSystemBar } from '../../composables/useSystemBar'
 
 const systemBar = useSystemBar()
 const menu = ref<InstanceType<typeof TieredMenu> | null>(null)
+const startAnchorRef = ref<HTMLElement | null>(null)
+
+/** Gap between Start menu and taskbar edge (matches Win95 spacing). */
+const START_MENU_GAP_PX = 2
+
+let resizeListener: (() => void) | null = null
 
 const startMenuRowClass =
   'owd-system-bar__start__menu__row flex items-center box-border gap-2 px-2.5'
@@ -31,17 +37,68 @@ function toggleStartMenu(event: Event) {
   menu.value?.toggle(event)
 }
 
+function findStartMenuEl(): HTMLElement | null {
+  return document.querySelector<HTMLElement>(
+    '#win95_start_menu.owd-system-bar__start__menu, .owd-system-bar__start__menu.p-tieredmenu',
+  )
+}
+
+/** PrimeVue `absolutePosition` always opens below the anchor; flip when taskbar is at bottom. */
+function repositionStartMenu() {
+  nextTick(() => {
+    requestAnimationFrame(() => {
+    const menuEl = findStartMenuEl()
+    const anchorEl =
+      startAnchorRef.value?.querySelector<HTMLElement>(
+        '.owd-system-bar__start__button',
+      ) ?? startAnchorRef.value
+    if (!menuEl || !anchorEl) return
+
+    const barPosition = systemBar.position.value ?? 'bottom'
+    const btnRect = anchorEl.getBoundingClientRect()
+    const menuHeight = menuEl.offsetHeight
+
+    if (barPosition === 'bottom') {
+      menuEl.style.top = `${btnRect.top - menuHeight - START_MENU_GAP_PX}px`
+      menuEl.style.left = `${btnRect.left}px`
+    } else {
+      menuEl.style.top = `${btnRect.bottom + START_MENU_GAP_PX}px`
+      menuEl.style.left = `${btnRect.left}px`
+    }
+    })
+  })
+}
+
+function bindRepositionOnResize() {
+  unbindRepositionOnResize()
+  resizeListener = () => repositionStartMenu()
+  window.addEventListener('resize', resizeListener)
+}
+
+function unbindRepositionOnResize() {
+  if (!resizeListener) return
+  window.removeEventListener('resize', resizeListener)
+  resizeListener = null
+}
+
 function onMenuShow() {
   systemBar.opened.value = true
+  repositionStartMenu()
+  bindRepositionOnResize()
 }
 
 function onMenuHide() {
   systemBar.opened.value = false
+  unbindRepositionOnResize()
 }
+
+onUnmounted(() => {
+  unbindRepositionOnResize()
+})
 </script>
 
 <template>
-  <div class="owd-system-bar__start">
+  <div ref="startAnchorRef" class="owd-system-bar__start">
     <Button
       class="owd-system-bar__start__button"
       aria-haspopup="true"
@@ -54,7 +111,9 @@ function onMenuHide() {
       @click="toggleStartMenu"
     >
       <div class="owd-system-bar__start__button__icon" />
-      {{ $t('systemBar.start.button.label') }}
+      <span class="owd-system-bar__start__button__label">{{
+        $t('systemBar.start.button.label')
+      }}</span>
     </Button>
 
     <TieredMenu
@@ -107,8 +166,15 @@ function onMenuHide() {
   &__button {
     height: 100%;
     min-height: calc(var(--owd-system-bar-height) - 2 * var(--owd-gap));
+    color: var(--p-card-color);
+
+    &:global(.p-button--active),
+    &:global(:active) {
+      color: var(--p-card-color);
+    }
 
     &__icon {
+      z-index: 2;
       position: absolute;
       top: 50%;
       left: 2px;
@@ -122,6 +188,12 @@ function onMenuHide() {
       padding-right: 8px;
       pointer-events: none;
     }
+
+    &__label {
+      position: relative;
+      z-index: 2;
+      pointer-events: none;
+    }
   }
 
 }
@@ -130,8 +202,8 @@ function onMenuHide() {
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  height: var(--owd-start-menu-row-height, 31px);
-  min-height: var(--owd-start-menu-row-height, 31px);
+  height: var(--owd-start-menu-root-row-height, 36px);
+  min-height: var(--owd-start-menu-root-row-height, 36px);
   gap: 8px;
   width: 100%;
   text-decoration: none;

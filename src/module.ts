@@ -1,37 +1,32 @@
 import {
-  defineNuxtModule,
   createResolver,
   addComponentsDir,
   installModule,
   addImportsDir,
   addPlugin,
 } from '@nuxt/kit'
-import { defu } from 'defu'
 import { registerTailwindPath } from '@owdproject/core'
+import { defineDesktopTheme } from '@owdproject/core/runtime/utils/defineDesktopTheme'
 
-export default defineNuxtModule({
+export default defineDesktopTheme({
   meta: {
     name: 'owd-theme-win95',
-    configKey: 'desktop'
   },
   defaults: {
     name: 'win95',
     systemBar: {
       enabled: true,
       position: 'bottom',
-      startButton: true
-    }
+      startButton: true,
+    },
+    windows: {
+      position: 'fixed',
+    },
   },
-  async setup(options, nuxt) {
+  async setup(_options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
 
     await installModule('@owdproject/kit-theme')
-
-    nuxt.options.runtimeConfig.public ??= {}
-    nuxt.options.runtimeConfig.public.desktop = defu(
-      nuxt.options.runtimeConfig.public.desktop ?? {},
-      options,
-    )
 
     {
       // add components
@@ -76,7 +71,7 @@ export default defineNuxtModule({
 
     {
       addPlugin({
-        src: resolve('./runtime/plugins/50.owd-theme-win95-dialogs.client.ts'),
+        src: resolve('./runtime/plugins/50.desktop-theme-win95-dialogs.client.ts'),
         mode: 'client',
       })
     }

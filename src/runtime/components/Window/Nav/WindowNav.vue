@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { inject } from 'vue'
+import { useToggleWindowMaximize } from '@owdproject/kit-theme/runtime/composables/useToggleWindowMaximize'
 
 const windowController = inject<IWindowController>('windowController')
+const toggleWindowMaximize = useToggleWindowMaximize()
 
 function onWindowMinimize() {
   if (!windowController?.instanced) return
@@ -10,9 +12,7 @@ function onWindowMinimize() {
 }
 
 function onWindowMaximize() {
-  if (!windowController?.instanced) return
-
-  windowController.actions.toggleMaximize()
+  toggleWindowMaximize(windowController)
 }
 
 function onWindowNavDestroy() {
