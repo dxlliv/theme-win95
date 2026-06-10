@@ -5,12 +5,15 @@ import {
   addImportsDir,
   addPlugin,
 } from '@nuxt/kit'
-import { registerTailwindPath } from '@owdproject/core'
-import { defineDesktopTheme } from '@owdproject/core/runtime/utils/defineDesktopTheme'
+import { defineDesktopTheme } from '@owdproject/core'
+import {
+  registerTailwindPath,
+  registerThemeTailwindPath,
+} from '@owdproject/kit-primevue/kit/registerTailwindPath'
 
 export default defineDesktopTheme({
   meta: {
-    name: 'owd-theme-win95',
+    name: 'desktop-theme-win95',
   },
   defaults: {
     name: 'win95',
@@ -26,77 +29,60 @@ export default defineDesktopTheme({
   async setup(_options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
 
-    await installModule('@owdproject/kit-theme')
+    await installModule('@owdproject/kit-primevue')
+    registerThemeTailwindPath(nuxt, import.meta.url)
+    registerTailwindPath(nuxt, resolve('./runtime/pages/**/*.{vue,mjs,ts}'))
 
-    {
-      // add components
+    // Win95 chrome is SCSS-driven; Tailwind preflight resets break PrimeVue / theme partials.
+    nuxt.hook('tailwindcss:config', (config) => {
+      config.corePlugins = { ...(config.corePlugins ?? {}), preflight: false }
+    })
 
-      addComponentsDir({
-        path: resolve('./runtime/components')
+    nuxt.options.css.push(resolve('./runtime/assets/styles/index.scss'))
+
+    addComponentsDir({
+      path: resolve('./runtime/components'),
+    })
+
+    nuxt.hook('i18n:registerModule', (register) => {
+      register({
+        langDir: resolve('./i18n'),
+        locales: [
+          {
+            code: 'en',
+            file: 'locales/en.ts',
+          },
+        ],
       })
-    }
+    })
 
-    {
-      // configure tailwind
+    addImportsDir(resolve('./runtime/composables'))
+    addImportsDir(resolve('./runtime/consts'))
+    addImportsDir(resolve('./runtime/stores'))
+    addImportsDir(resolve('./runtime/utils'))
 
-      registerTailwindPath(nuxt, resolve('./runtime/components/**/*.{vue,mjs,ts}'))
-      registerTailwindPath(nuxt, resolve('./runtime/pages/**/*.{vue,mjs,ts}'))
-    }
+    addPlugin({
+      src: resolve('./runtime/plugins/50.desktop-theme-win95-dialogs.client.ts'),
+      mode: 'client',
+    })
 
-    {
-      // import i18n
-
-      nuxt.hook('i18n:registerModule', (register) => {
-        register({
-          // langDir path needs to be resolved
-          langDir: resolve('./i18n'),
-          locales: [
-            {
-              code: 'en',
-              file: 'locales/en.ts'
-            }
-          ]
-        })
-      })
-    }
-
-    {
-      // add other files
-
-      addImportsDir(resolve('./runtime/composables'))
-      addImportsDir(resolve('./runtime/consts'))
-      addImportsDir(resolve('./runtime/stores'))
-      addImportsDir(resolve('./runtime/utils'))
-    }
-
-    {
+    if (nuxt.options.modules.includes('@owdproject/module-fs')) {
       addPlugin({
-        src: resolve('./runtime/plugins/50.desktop-theme-win95-dialogs.client.ts'),
+        src: resolve('./runtime/apps/explorer/plugin.ts'),
         mode: 'client',
       })
+
+      addComponentsDir({
+        path: resolve('./runtime/apps/explorer/components'),
+      })
+
+      registerTailwindPath(
+        nuxt,
+        resolve('./runtime/apps/explorer/components/**/*.{vue,mjs,ts}'),
+      )
+
+      await installModule('@owdproject/app-classic-audioplayer')
+      await installModule('@owdproject/app-classic-videoplayer')
     }
-
-    {
-      if (nuxt.options.modules.includes('@owdproject/module-fs')) {
-        await installModule('@owdproject/kit-explorer')
-
-        addPlugin({
-          src: resolve('./runtime/apps/explorer/plugin.ts'),
-          mode: 'client',
-        })
-
-        addComponentsDir({
-          path: resolve('./runtime/apps/explorer/components'),
-        })
-
-        registerTailwindPath(
-          nuxt,
-          resolve('./runtime/apps/explorer/components/**/*.{vue,mjs,ts}'),
-        )
-
-        await installModule('@owdproject/app-classic-audioplayer')
-        await installModule('@owdproject/app-classic-videoplayer')
-      }
-    }
-  }
+  },
 })

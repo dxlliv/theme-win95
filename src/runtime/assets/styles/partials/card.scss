@@ -1,14 +1,17 @@
 .p-card {
-  background: var(--p-surface-900);
+  background: var(--p-card-background, var(--p-surface-900));
   color: var(--p-card-color);
   border-color: var(--p-card-border-color);
-  box-shadow: var(--p-card-box-shadow);
+  box-shadow: var(--p-card-shadow, var(--p-card-box-shadow));
+  border-radius: var(--p-card-border-radius, 0);
 
-  &--border {
+  // PrimeVue 4 injects `.p-card { box-shadow: var(--p-card-shadow) }` at runtime.
+  // Use chained selectors so Win95 chrome wins regardless of injection order.
+  &.p-card--border {
     box-shadow: var(--owd-border-color);
   }
 
-  &--inset {
+  &.p-card--inset {
     box-shadow: none;
     border: var(--owd-border-width) solid;
     border-color: rgb(var(--owd-theme-color-dark))
@@ -29,6 +32,7 @@
     flex-direction: column;
     height: 100%;
     padding: var(--owd-gap);
+    box-shadow: var(--owd-border-color);
 
     > .p-card-header {
       margin-bottom: 2px;

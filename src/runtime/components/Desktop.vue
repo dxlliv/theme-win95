@@ -1,13 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useSystemBar } from '../composables/useSystemBar'
-import { useDesktopSession } from '@owdproject/kit-theme/runtime/composables/useDesktopSession'
-import { useBlockNonInputContextMenu } from '@owdproject/kit-theme/runtime/composables/useBlockNonInputContextMenu'
-import { useDesktopWorkArea } from '@owdproject/kit-theme/runtime/composables/useDesktopWorkArea'
-import {
-  provideDesktopShellStage,
-  provideDesktopWorkArea,
-} from '@owdproject/kit-theme/runtime/composables/provideDesktopShellStage'
+import { useDesktopSession } from '@owdproject/core/runtime/composables/useDesktopSession'
+import { useBlockNonInputContextMenu } from '@owdproject/core/runtime/composables/useBlockNonInputContextMenu'
+import { useDesktopWorkArea } from '@owdproject/core/runtime/composables/useDesktopWorkArea'
 import Win95WindowSnapHints from './Win95WindowSnapHints.vue'
 
 const systemBar = useSystemBar()
@@ -16,9 +12,7 @@ const { shuttingDown } = useDesktopSession()
 useBlockNonInputContextMenu()
 
 const shellStageRef = ref<HTMLElement | null>(null)
-const { workArea } = useDesktopWorkArea(shellStageRef)
-provideDesktopShellStage(shellStageRef)
-provideDesktopWorkArea(workArea)
+useDesktopWorkArea(shellStageRef)
 </script>
 
 <template>
@@ -46,8 +40,6 @@ provideDesktopWorkArea(workArea)
 </template>
 
 <style lang="scss">
-@use '../assets/styles/index.scss';
-
 .win95-shell__stage {
   position: relative;
   flex: 1;

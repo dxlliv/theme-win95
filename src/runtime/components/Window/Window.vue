@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { useDesktopWindowDragHandlersInjected } from '@owdproject/kit-theme/runtime/composables/useDesktopWindowDragHandlers'
+import { useWindowDragHandlers } from '@owdproject/core/runtime/composables/useWindowDragHandlers'
 
 const props = defineProps<{
   window?: IWindowController
   content?: any
 }>()
 
-const { onDragStart, onDragEnd } = useDesktopWindowDragHandlersInjected(
+const { onDragStart, onDragEnd } = useWindowDragHandlers(
   () => props.window,
 )
 </script>
@@ -18,7 +18,7 @@ const { onDragStart, onDragEnd } = useDesktopWindowDragHandlersInjected(
     @drag:start="onDragStart"
     @drag:end="onDragEnd"
   >
-    <Card pt:root="p-card--border">
+    <Card class="p-card--border">
       <template #header>
         <WindowNav>
           <template v-slot:prepend>

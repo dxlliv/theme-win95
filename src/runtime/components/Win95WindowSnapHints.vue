@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import WindowSnapHintsBase from '@owdproject/kit-theme/runtime/components/WindowSnapHintsBase.vue'
+import WindowSnapHintsBase from '@owdproject/core/runtime/components/window/WindowSnapHintsBase.vue'
 </script>
 
 <template>

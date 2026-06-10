@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { inject } from 'vue'
-import { useToggleWindowMaximize } from '@owdproject/kit-theme/runtime/composables/useToggleWindowMaximize'
+import { useToggleWindowMaximize } from '@owdproject/core/runtime/composables/useToggleWindowMaximize'
 
 const windowController = inject<IWindowController>('windowController')
 const toggleWindowMaximize = useToggleWindowMaximize()

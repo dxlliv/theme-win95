@@ -1,4 +1,4 @@
-/* Win95 explorer (KitFs Workspace + frameClass). */
+/* Win95 explorer (DesktopExplorer workspace + frameClass). */
 .owd-desktop--win95 {
   .owd-window.win95-explorer-frame.resizable-component {
     > .p-card {
@@ -11,6 +11,7 @@
       flex-direction: column;
       height: 100%;
       padding: var(--owd-gap);
+      box-shadow: var(--owd-border-color);
 
       > .p-card-header {
         margin-bottom: 2px;

@@ -1,8 +1,8 @@
 import { useApplicationManager } from '@owdproject/core/runtime/composables/useApplicationManager'
 import { useApplicationEntries } from '@owdproject/core/runtime/composables/useApplicationEntries'
 import { useDesktopDefaultAppsStore } from '@owdproject/core/runtime/stores/storeDesktopDefaultApps'
-import { useDesktopSession } from '@owdproject/kit-theme/runtime/composables/useDesktopSession'
-import { useDesktopShellOptions } from '@owdproject/kit-theme/runtime/composables/useDesktopShellOptions'
+import { useDesktopSession } from '@owdproject/core/runtime/composables/useDesktopSession'
+import { useDesktopShellOptions } from '@owdproject/core/runtime/composables/useDesktopShellOptions'
 import { ref, computed } from '@vue/reactivity'
 
 export function useSystemBar() {

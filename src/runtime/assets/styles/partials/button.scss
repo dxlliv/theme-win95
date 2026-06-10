@@ -103,9 +103,49 @@
 
   // special buttons
 
-  &--window-nav {
+  &.p-button--window-nav {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
     min-width: 21px;
+    width: 21px;
     height: 21px;
+    padding: 0 !important;
+    border: 0 !important;
+    gap: 0;
+
+    // PrimeVue 4 icon-only buttons inject sizing pseudo-content.
+    &::after {
+      display: none !important;
+      content: none !important;
+    }
+
+    > .iconify,
+    .iconify {
+      position: static !important;
+      top: auto !important;
+      left: auto !important;
+      transform: none !important;
+      margin: 0 !important;
+      background: transparent !important;
+      width: 10px;
+      height: 10px;
+    }
+
+    &:not([disabled]):active,
+    &:not([disabled]).p-button--active {
+      .owd-button__window-nav-content .owd-button__icon:not(.owd-button__icon--close) {
+        transform: translate(1px, 1px);
+      }
+
+      .owd-button__window-nav-content .owd-button__icon--close {
+        transform: translate(1px, 1px) rotate(45deg);
+      }
+
+      .owd-button__window-nav-content .iconify {
+        transform: translate(1px, 1px);
+      }
+    }
   }
 
   &--system-bar {

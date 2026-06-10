@@ -12,8 +12,7 @@ const START_MENU_GAP_PX = 2
 
 let resizeListener: (() => void) | null = null
 
-const startMenuRowClass =
-  'owd-system-bar__start__menu__row flex items-center box-border gap-2 px-2.5'
+const startMenuRowClass = 'owd-system-bar__start__menu__link'
 
 const startMenuPt = {
   root: { class: 'owd-system-bar__start__menu' },

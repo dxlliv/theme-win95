@@ -2,7 +2,7 @@
 import { useConfirm } from 'primevue/useconfirm'
 import { useI18n } from 'vue-i18n'
 import type { IWindowController } from '@owdproject/core'
-import { createExplorerWindowMenuItems } from '@owdproject/kit-explorer/runtime/composables/useExplorerWindowMenu'
+import { createExplorerWindowMenuItems } from '@owdproject/module-fs/runtime/composables/useExplorerWindowMenu'
 
 const props = defineProps<{
   window: IWindowController
@@ -33,7 +33,7 @@ props.window.setMenu(explorerMenu)
 </script>
 
 <template>
-  <KitFsExplorerWorkspace
+  <DesktopExplorerWorkspace
     :window="window"
     frame-class="win95-explorer-frame"
   />
@@ -42,8 +42,8 @@ props.window.setMenu(explorerMenu)
 
   <ConfirmDialog group="delete">
     <template #message="ctx">
-      <div class="flex items-center space-x-3">
-        <div class="text-yellow-500 mt-1">
+      <div class="win95-confirm">
+        <div class="win95-confirm__icon">
           <img
             v-if="ctx.message.toTrash"
             src="data:image/gif;base64,R0lGODlhHQAgAMIGAAAAAAAA/wCAAICAgMDAwP///7KysrKysiH5BAEKAAcALAAAAAAdACAAAAPUeLo3/vCxSV25OJcB6HybJg5E51kXKmJDUVYptGZAXX9bdAV8z8ccXA40E5kWJAJw52sGLgAHkkBVuqxFDCCmSFYvBGcTSoU2qmgwdgUoFzpetDvsdOfg8rz6C3SY4lUDAgJ2fQ9HgASDi4pUERCIVIuEkowEj4dTlZSbjphBU5NVopeYR12KhJx5n6dng3mSno+uJLCjuKW0FYpJt4KzkCeyk5amw4HFgbsVDsmszBQ1zpfQwh4L04m6mdgM2nLR3tlRXuLj5M6Qrujf5Rzs7dI32AkAOw=="
@@ -54,7 +54,7 @@ props.window.setMenu(explorerMenu)
           />
         </div>
 
-        <div>
+        <div class="win95-confirm__message">
           {{ ctx.message.message }}
         </div>
       </div>
@@ -63,11 +63,11 @@ props.window.setMenu(explorerMenu)
 
   <ConfirmDialog group="about">
     <template #message>
-      <div>
+      <div class="win95-about-dialog">
         <p>
           Windows 95 theme for Open Web Desktop.
         </p>
-        <p class="mt-2">
+        <p class="win95-about-dialog__link-row">
           <a
             href="https://github.com/owdproject/theme-win95"
             target="_blank"
@@ -79,3 +79,27 @@ props.window.setMenu(explorerMenu)
     </template>
   </ConfirmDialog>
 </template>
+
+<style scoped lang="scss">
+.win95-confirm {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  &__icon {
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  &__message {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+.win95-about-dialog {
+  &__link-row {
+    margin-top: 8px;
+  }
+}
+</style>

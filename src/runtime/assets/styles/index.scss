@@ -59,6 +59,22 @@
 
   --p-surface-900: rgb(var(--owd-theme-color-light));
 
+  // PrimeVue 4 injects dt('card.background') → var(--p-card-background). Without a
+  // theme preset those tokens are unset and override the rules in partials/card.scss.
+  --p-content-background: var(--p-surface-900);
+  --p-card-background: var(--p-surface-900);
+  --p-card-shadow: var(--p-card-box-shadow);
+  --p-card-border-radius: 0;
+
+  --p-button-padding-x: 0;
+  --p-button-padding-y: 0;
+  --p-button-sm-padding-x: 0;
+  --p-button-sm-padding-y: 0;
+  --p-button-icon-only-width: 21px;
+  --p-button-sm-icon-only-width: 21px;
+  --p-button-border-radius: 0;
+  --p-button-gap: 0;
+
   --p-input-color: black;
   --p-input-backgorund: white;
   --p-input-border-color: rgb(var(--owd-theme-color-dark))
@@ -112,8 +128,4 @@
 .owd-desktop {
   font-size: 0.9rem;
   line-height: 1rem;
-}
-
-.text-sm {
-  padding: 2px;
 }

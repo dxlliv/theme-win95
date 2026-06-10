@@ -1,6 +1,6 @@
 <template>
-  <ButtonWindowNav size="small">
-    <div class="owd-button__icon" />
+  <ButtonWindowNav>
+    <div class="owd-button__icon owd-button__icon--close" />
   </ButtonWindowNav>
 </template>
 
@@ -8,12 +8,9 @@
 .owd-button__icon {
   width: 12px;
   height: 12px;
-  top: 50%;
-  left: 50%;
-  margin-left: -1px;
-  margin-top: -10px;
-  transform: translateX(-50%) translateY(-50%) rotateZ(45deg);
   position: relative;
+  flex-shrink: 0;
+  transform: rotate(45deg);
 
   &:before,
   &:after {
