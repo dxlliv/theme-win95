@@ -113,6 +113,15 @@
   color: rgb(var(--owd-elevation-active-color));
 }
 
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
 .owd-desktop--win95 {
   font-size: 0.9rem;
   line-height: 1rem;

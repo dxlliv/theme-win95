@@ -49,6 +49,7 @@ useDesktopWorkArea(shellStageRef)
 }
 
 .owd-desktop {
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   font-family: var(--owd-font-family), serif;

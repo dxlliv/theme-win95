@@ -23,6 +23,7 @@ export function useSystemBar() {
   const appEntriesSortedByTitle = appEntries.sortedAppEntries('title')
 
   const menu = computed(() => {
+    const defaultExplorerApp = desktopDefaultAppsStore.getDefaultApp('explorer')
     const defaultTerminalApp = desktopDefaultAppsStore.getDefaultApp('terminal')
     const defaultAuthApp = desktopDefaultAppsStore.getDefaultApp('auth')
 
@@ -45,11 +46,17 @@ export function useSystemBar() {
         label: 'Documents',
         image:
           'data:image/png;base64,AAABAAEAICAQAAEABADoAgAAFgAAACgAAAAgAAAAQAAAAAEABAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAACAAAAAgIAAgAAAAIAAgACAgAAAwMDAAICAgAAAAP8AAP8AAAD//wD/AAAA/wD/AP//AAD///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgzMzMzMzMzMzMzMzMwAAAIt7e3t7e3t7e3t7e3MAAACHt7e3t7e3t7e3t7ezAAAIe3t7e3t7e3t7e3t7cAAACLe3t7e3t7e3t7e3t3AAAAh7e3t7e3t7e3t7e3uAAAAIt7e3t7e3t7e3t7e3gAAAi3t7e3t7e3t7e3t7ewAAAIe3t7e3t7e3t7e3t7cDAACLe3t7e3t7e3t7e3t4AAAAh7e3t7e3t7e3t7e3uAcACHt7e3t7e3t7e3t7e3CPcAi3t7e3t7e3t7e3t7eA//cIe3t7e3t7e3t7e3t3gP9wCP///////////////w/3AACId3d3d3d3d3d3d3d/cAAAAI+P//j3bMLGYsD/9wMAAACPeP//j3LMIiJP/3CzAAAAj7eP/4f3YiJmD/cLsAAAAI97eP/4f8IiIP9wiIAAAAAI97eP/4jyaI/3AAAAAAAAAI//+P//iI//cAAAAAAAAAAIiIiP////9wAAAAAAAAAAAAAACP///3AAAAAAAAAAAAAAAACP//cAAAAAAAAAAAAAAAAACP9wAAAAAAAAAAAAAAAAAACHAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///////////AAAAfgAAAD4AAAA+AAAAPAAAADwAAAA8AAAAPAAAADgAAAA4AAAAOAAAADgAAAAwAAAAEAAAAAAAAAAQAAAAOAAAAD4AAAA+AAAAPgAAAD4AAAD/AAAP/4AAH//AAD///wB///+A////wf///+P////3///////w==',
-        command: function () {
-          applicationManager.launchAppEntry(
-            'org.owdproject.explorer',
-            'explorer',
-            '/'
+        command: () => {
+          if (!defaultExplorerApp) return
+          if (
+            !applicationManager.isAppDefined(defaultExplorerApp.applicationId)
+          ) {
+            return
+          }
+
+          void applicationManager.launchAppEntry(
+            defaultExplorerApp.applicationId,
+            defaultExplorerApp.entry,
           )
         },
       },

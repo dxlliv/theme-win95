@@ -12,14 +12,14 @@ export default {
       component: () => import('./components/Window/WindowExplorer.vue'),
       resizable: true,
       size: {
-        width: 560,
-        height: 440,
+        width: 720,
+        height: 480,
         minWidth: 560,
         minHeight: 440,
       },
       position: {
-        x: 400,
-        y: 240,
+        x: 120,
+        y: 80,
         z: 0,
       },
     },

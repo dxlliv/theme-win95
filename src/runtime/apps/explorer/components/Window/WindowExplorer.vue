@@ -36,7 +36,11 @@ props.window.setMenu(explorerMenu)
   <DesktopExplorerWorkspace
     :window="window"
     frame-class="win95-explorer-frame"
-  />
+  >
+    <template #nav>
+      <WindowNav />
+    </template>
+  </DesktopExplorerWorkspace>
 
   <ConfirmDialog />
 

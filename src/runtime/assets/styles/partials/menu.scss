@@ -132,10 +132,10 @@ body .owd-system-bar__start__menu.p-tieredmenu {
   /* Programs etc. — flyout to the right (not stacked under the parent row). */
   .p-tieredmenu-submenu {
     position: absolute !important;
-    left: 100% !important;
-    top: 0 !important;
-    right: auto !important;
-    bottom: auto !important;
+    left: 100%;
+    top: 0;
+    right: auto;
+    bottom: auto;
     display: flex;
     flex-direction: column;
     margin: 0;

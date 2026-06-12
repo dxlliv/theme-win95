@@ -45,6 +45,8 @@ const classes = computed(() => {
   position: relative;
   height: var(--owd-system-bar-height);
   padding: var(--owd-gap);
+  font-size: var(--p-font-size);
+  line-height: 1rem;
   z-index: 999999999;
 
   :deep(> .p-card-body) {
