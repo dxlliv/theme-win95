@@ -12,6 +12,8 @@ function onWindowMinimize() {
 }
 
 function onWindowMaximize() {
+  if (!windowController?.isMaximizable) return
+
   toggleWindowMaximize(windowController)
 }
 
@@ -45,7 +47,8 @@ function onWindowNavDestroy() {
         @click.stop="onWindowMinimize"
       />
       <ButtonMaximize
-        v-if="windowController?.isMaximizable"
+        :disabled="!windowController?.isMaximizable"
+        :is-maximized="windowController?.isMaximized"
         @mousedown.stop
         @click.stop="onWindowMaximize"
       />
@@ -65,6 +68,8 @@ function onWindowNavDestroy() {
   flex-shrink: 0;
   justify-content: space-between;
   height: var(--owd-windov-nav-height);
+  font-size: var(--p-font-size);
+  line-height: 1rem;
   font-weight: bold;
   background: rgb(var(--owd-elevation-inactive));
   color: rgb(var(--owd-theme-color-light));

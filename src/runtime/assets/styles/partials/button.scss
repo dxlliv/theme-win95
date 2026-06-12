@@ -103,6 +103,71 @@
 
   // special buttons
 
+  &.p-button--explorer-toolbar {
+    display: inline-flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    flex-shrink: 0;
+    min-width: var(--desktop-explorer-toolbar-btn-min-w, 72px) !important;
+    width: auto !important;
+    height: calc(var(--desktop-explorer-toolbar-h, 54px) - 4px) !important;
+    max-height: calc(var(--desktop-explorer-toolbar-h, 54px) - 4px) !important;
+    margin: 0 !important;
+    padding: 3px var(--desktop-explorer-toolbar-btn-px, 10px) 1px !important;
+    filter: grayscale(1);
+    font-family: var(--owd-font-family);
+    font-size: var(--p-font-size) !important;
+    line-height: 1.15 !important;
+    white-space: nowrap;
+    color: var(--p-card-color) !important;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+    vertical-align: top;
+
+    &:not(:disabled):hover {
+      filter: grayscale(0);
+      background: transparent;
+      outline: 1px dotted rgb(var(--owd-theme-color-black));
+    }
+
+    &:disabled {
+      opacity: 0.45;
+    }
+
+    .p-button-label,
+    > span {
+      white-space: nowrap;
+    }
+
+    .p-button-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      height: 24px;
+      width: 100%;
+      margin-bottom: 2px;
+      padding: 0 4px;
+
+      img {
+        width: auto;
+        height: 24px;
+        max-height: 24px;
+        image-rendering: pixelated;
+      }
+    }
+
+    > img {
+      width: auto;
+      height: 24px;
+      max-height: 24px;
+      margin-bottom: 2px;
+      image-rendering: pixelated;
+    }
+  }
+
   &.p-button--window-nav {
     display: inline-flex !important;
     align-items: center;
@@ -148,9 +213,18 @@
     }
   }
 
-  &--system-bar {
+  &.p-button--system-bar {
+    // PrimeVue 4 injects `.p-button { font-size: 1rem }` after theme CSS.
     height: 100%;
     min-height: 22px;
+    font-size: var(--p-font-size);
+    line-height: 1rem;
+
+    > span,
+    .p-button-label {
+      font-size: inherit;
+      line-height: inherit;
+    }
 
     &-start {
       position: relative;
