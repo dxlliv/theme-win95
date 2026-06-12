@@ -10,6 +10,7 @@ import {
   registerTailwindPath,
   registerThemeTailwindPath,
 } from '@owdproject/kit-primevue/kit/registerTailwindPath'
+import { installWin95BuiltInApps } from './runtime/apps/installBuiltInApps'
 
 export default defineDesktopTheme({
   meta: {
@@ -66,23 +67,6 @@ export default defineDesktopTheme({
       mode: 'client',
     })
 
-    if (nuxt.options.modules.includes('@owdproject/module-fs')) {
-      addPlugin({
-        src: resolve('./runtime/apps/explorer/plugin.ts'),
-        mode: 'client',
-      })
-
-      addComponentsDir({
-        path: resolve('./runtime/apps/explorer/components'),
-      })
-
-      registerTailwindPath(
-        nuxt,
-        resolve('./runtime/apps/explorer/components/**/*.{vue,mjs,ts}'),
-      )
-
-      await installModule('@owdproject/app-classic-audioplayer')
-      await installModule('@owdproject/app-classic-videoplayer')
-    }
+    installWin95BuiltInApps(nuxt, import.meta.url)
   },
 })

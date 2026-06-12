@@ -23,7 +23,32 @@ export default {
     }
   },
   apps: {
+    calculator: {
+      title: 'Calculator',
+      display: 'Calculator display',
+      error: 'Error',
+      key: {
+        memoryClear: 'Memory clear',
+        memoryRecall: 'Memory recall',
+        memoryStore: 'Memory store',
+        memoryAdd: 'Memory add',
+        memorySubtract: 'Memory subtract',
+        backspace: 'Backspace',
+        clearEntry: 'Clear entry',
+        clear: 'Clear all',
+        negate: 'Negate',
+        sqrt: 'Square root',
+        percent: 'Percent',
+        divide: 'Divide',
+        multiply: 'Multiply',
+        subtract: 'Subtract',
+        add: 'Add',
+        decimal: 'Decimal separator',
+        equals: 'Equals',
+      },
+    },
     explorer: {
+      titleExploring: 'Exploring - {path}',
       address: 'Address',
       menu: {
         file: 'File',
@@ -60,6 +85,9 @@ export default {
         smallIcons: 'Small Icons',
         list: 'List',
         details: 'Details',
+      },
+      view: {
+        showHiddenFiles: 'Show hidden files',
       },
       sortBy: {
         name: 'Name',
