@@ -27,7 +27,7 @@ useDesktopWorkArea(shellStageRef)
         <slot />
       </DesktopContent>
 
-      <DesktopApplicationRender />
+      <DesktopCoreApplicationRender />
     </div>
 
     <SystemBar
