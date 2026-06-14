@@ -56,6 +56,11 @@ useDesktopWorkArea(shellStageRef)
   font-family: var(--owd-font-family), serif;
   font-size: var(--p-font-size);
 
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: never;
+  text-rendering: optimizeSpeed;
+
   button {
     font-family: var(--owd-font-family), serif;
   }
