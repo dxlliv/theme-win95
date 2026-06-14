@@ -10,7 +10,7 @@ defineProps<{
 </script>
 
 <template>
-  <Window :config="config" :window="window">
+  <DesktopWindow :config="config" :window="window">
     <template #nav-prepend>
       <slot name="nav-prepend" />
     </template>
@@ -24,7 +24,7 @@ defineProps<{
       :height="height"
       :allow="allow"
     />
-  </Window>
+  </DesktopWindow>
 </template>
 
 <style scoped lang="scss">

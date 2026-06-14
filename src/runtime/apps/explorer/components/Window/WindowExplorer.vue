@@ -38,7 +38,7 @@ props.window.setMenu(explorerMenu)
     frame-class="win95-explorer-frame"
   >
     <template #nav>
-      <WindowNav />
+      <DesktopWindowNav />
     </template>
   </DesktopExplorerWorkspace>
 

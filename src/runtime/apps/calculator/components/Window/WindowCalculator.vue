@@ -12,7 +12,7 @@ const { displayText, ...calcActions } = useClassicCalculator(t('apps.calculator.
 </script>
 
 <template>
-  <Window :window="window" class="owd-window--calc">
+  <DesktopWindow :window="window" class="owd-window--calc">
     <div class="calc">
       <div
         class="calc__display"
@@ -59,7 +59,7 @@ const { displayText, ...calcActions } = useClassicCalculator(t('apps.calculator.
         <Button type="button" class="calc-key calc-key--add" :aria-label="t('apps.calculator.key.add')" @click="calcActions.setOperator('+')">+</Button>
       </div>
     </div>
-  </Window>
+  </DesktopWindow>
 </template>
 
 <style scoped lang="scss">

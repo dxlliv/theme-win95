@@ -1,7 +1,7 @@
 <template>
-  <DesktopWindowContent>
+  <DesktopCoreWindowContent>
     <slot />
-  </DesktopWindowContent>
+  </DesktopCoreWindowContent>
 </template>
 
 <style scoped lang="scss">

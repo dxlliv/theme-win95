@@ -25,7 +25,7 @@ function onWindowNavDestroy() {
 </script>
 
 <template>
-  <DesktopWindowNav @dblclick="onWindowMaximize">
+  <DesktopCoreWindowNav @dblclick="onWindowMaximize">
     <WindowNavIcon
       v-if="windowController?.icon"
       :icon="windowController.icon"
@@ -58,7 +58,7 @@ function onWindowNavDestroy() {
         @click.stop="onWindowNavDestroy"
       />
     </div>
-  </DesktopWindowNav>
+  </DesktopCoreWindowNav>
 </template>
 
 <style scoped lang="scss">

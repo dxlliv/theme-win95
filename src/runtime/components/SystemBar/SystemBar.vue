@@ -32,7 +32,7 @@ const classes = computed(() => {
       <div>
         <Card class="p-card--inset">
           <template #content>
-            <DesktopTime />
+            <DesktopCoreTime />
           </template>
         </Card>
       </div>

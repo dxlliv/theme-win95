@@ -5,6 +5,7 @@ import { useDesktopSession } from '@owdproject/core/runtime/composables/useDeskt
 import { useBlockNonInputContextMenu } from '@owdproject/core/runtime/composables/useBlockNonInputContextMenu'
 import { useDesktopWorkArea } from '@owdproject/core/runtime/composables/useDesktopWorkArea'
 import Win95WindowSnapHints from './Win95WindowSnapHints.vue'
+import DesktopBackground from './Background/DesktopBackground.vue'
 
 const systemBar = useSystemBar()
 const { shuttingDown } = useDesktopSession()
@@ -17,7 +18,7 @@ useDesktopWorkArea(shellStageRef)
 
 <template>
   <DesktopCore v-bind="$props">
-    <Background />
+    <DesktopBackground />
 
     <Win95WindowSnapHints />
 

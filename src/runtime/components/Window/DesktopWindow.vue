@@ -12,7 +12,7 @@ const { onDragStart, onDragEnd } = useWindowDragHandlers(
 </script>
 
 <template>
-  <DesktopWindow
+  <DesktopCoreWindow
     v-bind="$props"
     v-show="window?.state?.active ?? true"
     @drag:start="onDragStart"
@@ -20,7 +20,7 @@ const { onDragStart, onDragEnd } = useWindowDragHandlers(
   >
     <Card class="p-card--border">
       <template #header>
-        <WindowNav>
+        <DesktopWindowNav>
           <template v-slot:prepend>
             <slot name="nav-prepend" />
           </template>
@@ -28,15 +28,15 @@ const { onDragStart, onDragEnd } = useWindowDragHandlers(
           <template v-slot:append>
             <slot name="nav-append" />
           </template>
-        </WindowNav>
+        </DesktopWindowNav>
       </template>
       <template #content>
-        <WindowContent>
+        <DesktopWindowContent>
           <slot />
-        </WindowContent>
+        </DesktopWindowContent>
       </template>
     </Card>
-  </DesktopWindow>
+  </DesktopCoreWindow>
 </template>
 
 <style scoped lang="scss">
