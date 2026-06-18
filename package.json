@@ -58,8 +58,7 @@
     "@nuxt/kit": "^4.4.4",
     "@owdproject/app-classic-audioplayer": "workspace:*",
     "@owdproject/app-classic-videoplayer": "workspace:*",
-    "@owdproject/kit-primevue": "workspace:*",
-    "defu": "^6.1.4"
+    "@owdproject/kit-primevue": "workspace:*"
   },
   "devDependencies": {
     "@nuxt/devtools": "^3.2.4",

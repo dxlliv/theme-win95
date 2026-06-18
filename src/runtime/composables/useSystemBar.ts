@@ -67,7 +67,7 @@ export function useSystemBar() {
       },
     ]
 
-    if (defaultTerminalApp) {
+    if (defaultTerminalApp && applicationManager.isAppDefined(defaultTerminalApp.applicationId)) {
       systemBarMenu.push({
         label: 'Run',
         image:
@@ -85,7 +85,7 @@ export function useSystemBar() {
       separator: true,
     })
 
-    if (defaultAuthApp) {
+    if (defaultAuthApp && applicationManager.isAppDefined(defaultAuthApp.applicationId)) {
       systemBarMenu.push({
         label: 'Log-in',
         image:
