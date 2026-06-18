@@ -14,7 +14,7 @@ export default {
       resizable: false,
       size: {
         width: 282,
-        height: 330,
+        height: 'auto',
       },
       position: {
         x: 320,

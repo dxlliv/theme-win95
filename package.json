@@ -56,8 +56,8 @@
   },
   "dependencies": {
     "@nuxt/kit": "^4.4.4",
-    "@owdproject/app-classic-audioplayer": "0.0.4",
-    "@owdproject/app-classic-videoplayer": "0.0.4",
+    "@owdproject/app-classic-audioplayer": "workspace:*",
+    "@owdproject/app-classic-videoplayer": "workspace:*",
     "@owdproject/kit-primevue": "workspace:*",
     "defu": "^6.1.4"
   },
@@ -67,6 +67,7 @@
     "@nuxt/schema": "^4.4.4",
     "@owdproject/core": "workspace:*",
     "@owdproject/module-fs": "workspace:*",
+    "@owdproject/kit-primevue": "workspace:*",
     "@vitejs/plugin-vue": "^6.0.6",
     "@vue/test-utils": "^2.4.10",
     "jsdom": "~29.1.1",
@@ -77,7 +78,8 @@
   },
   "peerDependencies": {
     "@owdproject/core": "^3.3.1",
-    "@owdproject/kit-primevue": "^0.0.1",
+    "@owdproject/kit-primevue": "^0.1.0",
+    "@owdproject/kit-tailwind": "^0.1.0",
     "@owdproject/module-fs": "^0.0.6",
     "nuxt": "^4.4.4"
   },
@@ -85,8 +87,5 @@
     "@owdproject/module-fs": {
       "optional": true
     }
-  },
-  "optionalDependencies": {
-    "@owdproject/app-about": "workspace:*"
   }
 }

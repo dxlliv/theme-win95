@@ -31,10 +31,10 @@ function onWindowNavDestroy() {
       :icon="windowController.icon"
     />
 
-    <div v-if="windowController?.title" class="owd-window-nav__title">
+    <div v-if="windowController?.windowTitle" class="owd-window-nav__title">
       <div
         class="owd-window-nav__title-inner truncate"
-        v-text="windowController?.title"
+        v-text="windowController?.windowTitle"
       />
     </div>
 
@@ -47,7 +47,7 @@ function onWindowNavDestroy() {
         @click.stop="onWindowMinimize"
       />
       <ButtonMaximize
-        :disabled="!windowController?.isMaximizable"
+        v-if="windowController?.isMaximizable"
         :is-maximized="windowController?.isMaximized"
         @mousedown.stop
         @click.stop="onWindowMaximize"

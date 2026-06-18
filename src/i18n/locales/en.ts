@@ -48,7 +48,7 @@ export default {
       },
     },
     explorer: {
-      titleExploring: 'Exploring - {path}',
+      titleExploring: 'Explorer - {path}',
       address: 'Address',
       menu: {
         file: 'File',

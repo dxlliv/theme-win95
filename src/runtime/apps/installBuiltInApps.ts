@@ -4,7 +4,7 @@ import {
   createResolver,
 } from '@nuxt/kit'
 import type { Nuxt } from '@nuxt/schema'
-import { registerTailwindPath } from '@owdproject/kit-primevue/kit/registerTailwindPath'
+import { registerTailwindPath } from '@owdproject/kit-tailwind/kit/registerTailwindPath'
 import { WIN95_THEME_BUILTIN_APPS } from './registry'
 
 /** Register autoload built-in apps from `runtime/apps/<name>/`. */

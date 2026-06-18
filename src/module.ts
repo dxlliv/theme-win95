@@ -9,7 +9,7 @@ import { defineDesktopTheme } from '@owdproject/core'
 import {
   registerTailwindPath,
   registerThemeTailwindPath,
-} from '@owdproject/kit-primevue/kit/registerTailwindPath'
+} from '@owdproject/kit-tailwind/kit/registerTailwindPath'
 import { installWin95BuiltInApps } from './runtime/apps/installBuiltInApps'
 
 export default defineDesktopTheme({
@@ -25,6 +25,12 @@ export default defineDesktopTheme({
     },
     windows: {
       position: 'fixed',
+    },
+    fs: {
+      defaultUserHome: '/Users/Guest',
+      mounts: {
+        '/Users': 'WebStorage',
+      },
     },
   },
   async setup(_options, nuxt) {
