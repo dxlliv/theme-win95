@@ -20,6 +20,5 @@ export function hasModuleFs(nuxt: Nuxt): boolean {
 
 export const WIN95_THEME_BUILTIN_APPS: Win95ThemeBuiltInApp[] = [
   { name: 'calculator', autoload: true },
-  // Explorer is always registered with the Win95 theme; module-fs supplies the VFS at runtime.
-  { name: 'explorer', autoload: true },
+  { name: 'explorer', autoload: true, when: hasModuleFs },
 ]
