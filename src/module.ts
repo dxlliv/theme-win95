@@ -1,9 +1,8 @@
 import {
   createResolver,
   addComponentsDir,
-  installModule,
   addImportsDir,
-  addPlugin,
+  installModule,
 } from '@nuxt/kit'
 import { defineDesktopTheme } from '@owdproject/core'
 import {
@@ -37,6 +36,7 @@ export default defineDesktopTheme({
     const { resolve } = createResolver(import.meta.url)
 
     await installModule('@owdproject/kit-primevue')
+
     registerThemeTailwindPath(nuxt, import.meta.url)
     registerTailwindPath(nuxt, resolve('./runtime/pages/**/*.{vue,mjs,ts}'))
 
@@ -68,11 +68,6 @@ export default defineDesktopTheme({
     addImportsDir(resolve('./runtime/consts'))
     addImportsDir(resolve('./runtime/stores'))
     addImportsDir(resolve('./runtime/utils'))
-
-    addPlugin({
-      src: resolve('./runtime/plugins/50.desktop-theme-win95-dialogs.client.ts'),
-      mode: 'client',
-    })
 
     installWin95BuiltInApps(nuxt, import.meta.url)
   },

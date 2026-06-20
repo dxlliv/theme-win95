@@ -5,6 +5,7 @@ import { useDesktopSession } from '@owdproject/core/runtime/composables/useDeskt
 import { useBlockNonInputContextMenu } from '@owdproject/core/runtime/composables/useBlockNonInputContextMenu'
 import { useDesktopWorkArea } from '@owdproject/core/runtime/composables/useDesktopWorkArea'
 import Win95WindowSnapHints from './Win95WindowSnapHints.vue'
+import Win95ConfirmDialogs from './Win95ConfirmDialogs.vue'
 import DesktopBackground from './Background/DesktopBackground.vue'
 
 const systemBar = useSystemBar()
@@ -37,6 +38,8 @@ useDesktopWorkArea(shellStageRef)
     <DesktopShutdown
       :active="shuttingDown"
     />
+
+    <Win95ConfirmDialogs />
   </DesktopCore>
 </template>
 
