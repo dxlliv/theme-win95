@@ -52,7 +52,8 @@
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && cd playground && pnpm exec nuxt prepare",
     "lint": "eslint .",
     "test": "vitest run",
-    "test:watch": "vitest watch"
+    "test:watch": "vitest watch",
+    "validate": "desktop validate ."
   },
   "dependencies": {
     "@nuxt/kit": "^4.4.4",
@@ -66,6 +67,7 @@
     "@nuxt/schema": "^4.4.4",
     "@owdproject/core": "workspace:*",
     "@owdproject/module-fs": "workspace:*",
+    "@owdproject/module-persistence": "workspace:*",
     "@owdproject/kit-primevue": "workspace:*",
     "@vitejs/plugin-vue": "^6.0.6",
     "@vue/test-utils": "^2.4.10",
@@ -80,10 +82,14 @@
     "@owdproject/kit-primevue": "^0.1.0",
     "@owdproject/kit-tailwind": "^0.1.0",
     "@owdproject/module-fs": "^0.0.6",
+    "@owdproject/module-persistence": "^0.1.0",
     "nuxt": "^4.4.4"
   },
   "peerDependenciesMeta": {
     "@owdproject/module-fs": {
+      "optional": true
+    },
+    "@owdproject/module-persistence": {
       "optional": true
     }
   }

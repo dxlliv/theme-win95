@@ -39,7 +39,12 @@ function onWindowNavDestroy() {
     </div>
 
     <div class="owd-window-nav__btn-group owd-window-nav__btn-group--append">
-      <slot name="append" />
+      <div
+        v-if="$slots.append"
+        class="owd-window-nav__btn-group owd-window-nav__btn-group--append-inner"
+      >
+        <slot name="append" />
+      </div>
 
       <ButtonMinimize
         v-if="!windowController?.instanced || windowController?.isMinimizable"
@@ -84,6 +89,13 @@ function onWindowNavDestroy() {
     gap: var(--owd-gap);
     padding: var(--owd-gap);
     margin-right: -1px;
+  }
+
+  &__btn-group--append-inner {
+    gap: var(--owd-gap);
+    margin: 0;
+    padding: 0;
+    border: 0;
   }
 
   &__title {

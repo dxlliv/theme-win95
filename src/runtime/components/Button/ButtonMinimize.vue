@@ -1,7 +1,7 @@
 <template>
-  <ButtonWindowNav>
+  <DesktopWindowNavButton>
     <div class="owd-button__icon" />
-  </ButtonWindowNav>
+  </DesktopWindowNavButton>
 </template>
 
 <style scoped lang="scss">

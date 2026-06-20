@@ -1,5 +1,5 @@
 <template>
-  <ButtonWindowNav :disabled="disabled">
+  <DesktopWindowNavButton :disabled="disabled">
     <svg
       v-if="isMaximized"
       class="owd-button__icon owd-button__icon--restore"
@@ -34,7 +34,7 @@
       </g>
       <path v-else fill-rule="evenodd" clip-rule="evenodd" d="M9 0H0V9H9V0ZM8 2H1V8H8V2Z" fill="black"/>
     </svg>
-  </ButtonWindowNav>
+  </DesktopWindowNavButton>
 </template>
 
 <script setup lang="ts">
