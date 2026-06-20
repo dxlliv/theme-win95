@@ -8,27 +8,95 @@ on:
     branches:
       - main
 
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout OWD client (workspace deps)
+        uses: actions/checkout@v4
+        with:
+          repository: owdproject/client
+          path: client
+          submodules: recursive
 
-      - uses: actions/setup-node@v6
+      - name: Checkout kit-tailwind
+        uses: actions/checkout@v4
+        with:
+          repository: owdproject/kit-tailwind
+          path: client/packages/kit-tailwind
+
+      - name: Checkout kit-primevue
+        uses: actions/checkout@v4
+        with:
+          repository: owdproject/kit-primevue
+          path: client/packages/kit-primevue
+
+      - name: Checkout module-fs
+        uses: actions/checkout@v4
+        with:
+          repository: owdproject/module-fs
+          path: client/packages/module-fs
+
+      - name: Checkout module-persistence
+        uses: actions/checkout@v4
+        with:
+          repository: owdproject/module-persistence
+          path: client/packages/module-persistence
+
+      - name: Checkout app-classic-audioplayer
+        uses: actions/checkout@v4
+        with:
+          repository: owdproject/app-classic-audioplayer
+          path: client/apps/app-classic-audioplayer
+
+      - name: Checkout app-classic-videoplayer
+        uses: actions/checkout@v4
+        with:
+          repository: owdproject/app-classic-videoplayer
+          path: client/apps/app-classic-videoplayer
+
+      - name: Checkout app-youtube
+        uses: actions/checkout@v4
+        with:
+          repository: owdproject/app-youtube
+          path: client/apps/app-youtube
+
+      - name: Checkout app-soundcloud
+        uses: actions/checkout@v4
+        with:
+          repository: owdproject/app-soundcloud
+          path: client/apps/app-soundcloud
+
+      - name: Overlay this theme-win95 repo
+        uses: actions/checkout@v4
+        with:
+          path: client/themes/theme-win95
+
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
 
       - run: npm i -g --force corepack@latest && corepack enable
 
-      - name: Install dependencies
-        run: npx nypm@latest i
+      - name: Install monorepo dependencies
+        working-directory: client
+        run: pnpm install --no-frozen-lockfile
 
       - name: Prepare module and playground
-        run: npm run dev:prepare
+        working-directory: client/themes/theme-win95
+        run: pnpm run dev:prepare
+
+      - name: Validate module layout
+        working-directory: client/themes/theme-win95
+        run: pnpm run validate
 
       - name: Generate playground (static)
-        run: npm run dev:generate
+        working-directory: client/themes/theme-win95
+        run: pnpm run dev:generate
         env:
           NUXT_APP_BASE_URL: /theme-win95/
 
@@ -36,4 +104,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: playground-dist
-          path: playground/.output/public
+          path: client/themes/theme-win95/playground/.output/public
