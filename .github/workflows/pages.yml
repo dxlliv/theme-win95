@@ -74,6 +74,18 @@ jobs:
           repository: owdproject/app-soundcloud
           path: client/apps/app-soundcloud
 
+      - name: Checkout app-wasmboy
+        uses: actions/checkout@v4
+        with:
+          repository: owdproject/app-wasmboy
+          path: client/apps/app-wasmboy
+
+      - name: Checkout app-terminal
+        uses: actions/checkout@v4
+        with:
+          repository: owdproject/app-terminal
+          path: client/apps/app-terminal
+
       - name: Checkout theme-nova
         uses: actions/checkout@v4
         with:
@@ -90,6 +102,12 @@ jobs:
           node-version: 22
 
       - run: npm i -g --force corepack@latest && corepack enable
+
+      - name: Apply wasmboy allowBuilds for playground
+        working-directory: client
+        run: |
+          node themes/theme-win95/ci/patch-client-workspace.mjs
+          grep -Fq 'audiobuffer-to-wav@https://codeload.github.com/torch2424/audiobuffer-to-wav' pnpm-workspace.yaml
 
       - name: Install monorepo dependencies
         working-directory: client
