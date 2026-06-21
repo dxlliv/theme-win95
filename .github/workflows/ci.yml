@@ -47,6 +47,12 @@ jobs:
           repository: owdproject/module-persistence
           path: client/packages/module-persistence
 
+      - name: Checkout app-todo
+        uses: actions/checkout@v4
+        with:
+          repository: owdproject/app-todo
+          path: client/apps/app-todo
+
       - name: Checkout app-classic-audioplayer
         uses: actions/checkout@v4
         with:
