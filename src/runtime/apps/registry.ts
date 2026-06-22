@@ -1,4 +1,5 @@
 import type { Nuxt } from '@nuxt/schema'
+import { hasDesktopModule } from '@owdproject/core'
 
 /**
  * Built-in Win95 theme apps under `runtime/apps/<name>/`.
@@ -10,15 +11,7 @@ export type Win95ThemeBuiltInApp = {
   when?: (nuxt: Nuxt) => boolean
 }
 
-export function hasModuleFs(nuxt: Nuxt): boolean {
-  const desktop = nuxt.options.runtimeConfig.public.desktop as {
-    modules?: string[]
-  }
-  const modules = desktop?.modules ?? []
-  return modules.some((m) => String(m).includes('module-fs'))
-}
-
 export const WIN95_THEME_BUILTIN_APPS: Win95ThemeBuiltInApp[] = [
   { name: 'calculator', autoload: true },
-  { name: 'explorer', autoload: true, when: hasModuleFs },
+  { name: 'explorer', autoload: true, when: (nuxt) => hasDesktopModule(nuxt, 'module-fs') },
 ]
