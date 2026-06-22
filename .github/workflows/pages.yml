@@ -62,6 +62,12 @@ jobs:
           repository: owdproject/app-classic-audioplayer
           path: client/apps/app-classic-audioplayer
 
+      - name: Checkout app-classic-videoplayer
+        uses: actions/checkout@v4
+        with:
+          repository: owdproject/app-classic-videoplayer
+          path: client/apps/app-classic-videoplayer
+
       - name: Checkout app-youtube
         uses: actions/checkout@v4
         with:

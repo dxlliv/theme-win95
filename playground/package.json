@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@owdproject/app-classic-audioplayer": "workspace:*",
+    "@owdproject/app-classic-videoplayer": "workspace:*",
     "@owdproject/app-soundcloud": "workspace:*",
     "@owdproject/app-terminal": "workspace:*",
     "@owdproject/app-wasmboy": "workspace:*",
