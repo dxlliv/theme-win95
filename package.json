@@ -65,6 +65,7 @@
     "@nuxt/schema": "^4.4.4",
     "@owdproject/core": "workspace:*",
     "@owdproject/module-fs": "workspace:*",
+    "@owdproject/app-terminal": "workspace:*",
     "@owdproject/module-persistence": "workspace:*",
     "@owdproject/kit-primevue": "workspace:*",
     "@vitejs/plugin-vue": "^6.0.6",

@@ -37,6 +37,11 @@
     > .p-card-header {
       margin-bottom: 2px;
       flex-shrink: 0;
+
+      .owd-window-header-extension {
+        display: block;
+        flex-shrink: 0;
+      }
     }
 
     > .p-card-body {
@@ -45,6 +50,8 @@
       height: auto;
 
       > .p-card-content {
+        display: flex;
+        flex-direction: column;
         height: 100%;
       }
     }

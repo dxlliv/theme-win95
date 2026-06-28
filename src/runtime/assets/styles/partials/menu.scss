@@ -280,3 +280,54 @@ body .owd-system-bar__start__menu.p-tieredmenu {
   height: 1px;
   background: rgb(var(--owd-theme-color-white));
 }
+
+.owd-window-menubar {
+  height: 20px;
+  min-height: 20px;
+  background: var(--p-surface-900);
+  border-bottom: 1px solid rgb(var(--owd-theme-color-dark));
+  padding-left: 2px;
+  flex-shrink: 0;
+
+  .p-menubar {
+    --p-menubar-item-padding: 0 6px;
+    --p-menubar-base-item-padding: 0 6px;
+
+    padding: 0;
+    background: transparent;
+    border: 0;
+    height: 20px;
+    min-height: 20px;
+
+    &:not(.p-menubar-mobile) .p-menubar-button {
+      display: none;
+    }
+  }
+
+  .p-menubar-root-list,
+  .p-menubar-start,
+  .p-menubar-end {
+    gap: 0;
+    padding: 0;
+    margin: 0;
+    height: 20px;
+    min-height: 20px;
+  }
+
+  .p-menubar-item,
+  .p-menubar-item-content {
+    padding: 0;
+    margin: 0;
+    height: 20px;
+    min-height: 20px;
+  }
+
+  .p-menubar-item-link,
+  .p-menubar-button {
+    padding: 0 6px !important;
+    height: 20px !important;
+    min-height: 20px !important;
+    line-height: 20px !important;
+    font-size: var(--p-font-size);
+  }
+}

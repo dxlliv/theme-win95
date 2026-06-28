@@ -14,4 +14,5 @@ export type Win95ThemeBuiltInApp = {
 export const WIN95_THEME_BUILTIN_APPS: Win95ThemeBuiltInApp[] = [
   { name: 'calculator', autoload: true },
   { name: 'explorer', autoload: true, when: (nuxt) => hasDesktopModule(nuxt, 'module-fs') },
+  { name: 'notepad', autoload: true },
 ]

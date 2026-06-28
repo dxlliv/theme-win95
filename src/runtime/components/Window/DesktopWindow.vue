@@ -29,8 +29,12 @@ const { onDragStart, onDragEnd } = useWindowDragHandlers(
             <slot name="nav-append" />
           </template>
         </DesktopWindowNav>
+        <div :id="'owd-window-header-extension-' + window?.state?.id" class="owd-window-header-extension" />
       </template>
       <template #content>
+        <div v-if="window?.menu && window.menu.length > 0" class="owd-window-menubar">
+          <Menubar :breakpoint="'0px'" :model="window.menu" />
+        </div>
         <DesktopWindowContent>
           <slot />
         </DesktopWindowContent>
