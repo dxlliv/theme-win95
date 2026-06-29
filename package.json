@@ -41,9 +41,6 @@
     "dist",
     "src"
   ],
-  "nx": {
-    "name": "theme-win95"
-  },
   "scripts": {
     "prepack": "nuxt-module-build build",
     "dev": "pnpm run dev:prepare && cd playground && pnpm exec nuxt dev",
